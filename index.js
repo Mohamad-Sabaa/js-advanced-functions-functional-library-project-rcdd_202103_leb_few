@@ -19,7 +19,7 @@ const fi = (function() {
         return mappedArr
       },
 
-      
+
       reduce: function(collection, callback, acc) {
         if(!(collection instanceof Array)){
           collection = Object.values(collection)
@@ -35,7 +35,7 @@ const fi = (function() {
         return acc
       },
 
-      
+
       find: function(collection, predicate) {
         return collection.find(predicate)
       },
@@ -69,7 +69,7 @@ const fi = (function() {
         return compactArr
       },
 
-      
+
       sortBy: function(array, callback){
         return [...array].sort((a,b) =>  callback(a) - callback(b))
       },
@@ -136,5 +136,5 @@ const fi = (function() {
     }
   })()
 
-  
+
   fi.libraryMethod()
