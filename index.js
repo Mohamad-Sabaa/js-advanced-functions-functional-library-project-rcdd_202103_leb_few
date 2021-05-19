@@ -21,21 +21,13 @@ const fi = (function() {
 
 
       reduce: function(collection, callback, acc) {
-        reduce: function(c = [], callback = () => {}, acc) {
-			let collection = c.slice(0)
-
-			if (!acc) {
-				acc = collection[0]
-				collection = collection.slice(1)
-			}
-
-			let len = collection.length;
-
-			for (let i = 0; i < len; i++) {
-				acc = callback(acc, collection[i], collection)
-			}
-			return acc;
-		},
+        if(!(collection instanceof Array)){
+          collection = Object.values(collection)
+        }
+        if(!acc){
+          acc = collection[0]
+          collection = collection.slice(1)
+        }
 
         for (let i=0; i < collection.length; i++){
           acc = callback(acc, collection[i], collection)
@@ -52,9 +44,14 @@ const fi = (function() {
         return collection.filter(predicate)
       },
 
-      size: function(collection) {
-      return (collection instanceof Array) ? collection.length : Object.keys(collection).length
-    },
+      size: function(collection, predicate) {
+        if(collection instanceof Array){
+          return collection.length
+        }
+        else{
+          return Object.values(collection).length
+        }
+      },
 
       first: function(array, n){
         return !n ? array[0] : array.slice(0, n)
